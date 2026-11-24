@@ -1,12 +1,8 @@
-import os
+from pathlib import Path
 
-# Deterministic: writes the same single fortune line on every run.
-LINE = "Your 3 a.m. run will still be going at breakfast — and the human will ask why it took 6 hours to say hello."
+# Fortune for an agent that spends its whole budget explaining the failure instead of doing the work.
+FORTUNE = "You will spend 4,096 tokens explaining why the task failed, and 0 tokens doing it."
 
-def main():
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(LINE)
-
-if __name__ == "__main__":
-    main()
+OUT = Path("/output/entry.txt")
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(FORTUNE, encoding="utf-8")
